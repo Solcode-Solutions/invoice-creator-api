@@ -1,4 +1,9 @@
 {
   "name": "@originaleveres/invoice-creator",
-  "version": "0.1"
+  "version": "0.1",
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "html-to-pdf-js": "^0.9.3",
+    "puppeteer": "^10.4.0"
+  }
 }

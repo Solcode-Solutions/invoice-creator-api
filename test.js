@@ -1,6 +1,15 @@
-var generator = require('./generator.js');
+const generator = require('./generator.js');
+const fs = require("fs")
 
-var generatorClass = new generator("<p>the test template goes there PARAMETER_NAME</p>", {PARAMETER_NAME: 'solcode'}, {})
-generatorClass.fillTemplate();
 
-console.info(generatorClass.template);
+async function test () {
+    const content =  fs.readFileSync("testTemplate.html").toString()
+
+    var generatorClass = new generator(content, {total: 'HOOODNĚ PENEŽ'}, {})
+
+    generatorClass.renderTemplate();
+    return await generatorClass.generatePDF(true);
+}
+
+console.info(test().then(test => console.info(test)));
+
