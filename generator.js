@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer')
 const handlebars = require('handlebars')
-const fs = require("fs")
 
 // new class declaration that is suitable for webpack compiler
 function Generator(template, data, invoiceItems) {
