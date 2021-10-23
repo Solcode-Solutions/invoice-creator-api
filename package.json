@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "dependencies": {
     "handlebars": "^4.7.7",
-    "html-to-pdf-js": "^0.9.3",
     "puppeteer": "^10.4.0"
   },
   "publishConfig": {
