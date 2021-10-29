@@ -8,7 +8,7 @@ async function test () {
     var generatorClass = new generator(content, {total: 'HOOODNĚ PENEŽ'}, {})
 
     generatorClass.renderTemplate();
-    return await generatorClass.generatePDF(true);
+    return await generatorClass.downloadPDF();
 }
 
 console.info(test().then(test => console.info(test)));

@@ -1,5 +1,6 @@
-const puppeteer = require('puppeteer')
 const handlebars = require('handlebars')
+const html2pdf = require('html2pdf.js')
+const { jsPDF } = require("jspdf")
 
 // new class declaration that is suitable for webpack compiler
 function Generator(template, data, invoiceItems) {
@@ -7,18 +8,6 @@ function Generator(template, data, invoiceItems) {
     this.template = template
     this.renderedTemplate = null
     this.data = data
-    this.pdfOptions = {
-        format: 'A4',
-        headerTemplate: "<p></p>",
-        footerTemplate: "<p></p>",
-        displayHeaderFooter: false,
-        margin: {
-            top: "40px",
-            bottom: "100px"
-        },
-        printBackground: true,
-        path: 'invoice.pdf'
-    };
 }
 
 Generator.prototype.getTemplate = function () {
@@ -34,19 +23,16 @@ Generator.prototype.renderTemplate = function () {
     this.renderedTemplate = templateHandlebars(this.data)
 }
 
-Generator.prototype.generatePDF = async function () {
-    const browser = await puppeteer.launch({
-        args: ['--no-sandbox'],
-        headless: true
-    });
-    const page = await browser.newPage();
-    await page.goto(`data:text/html;charset=UTF-8,${encodeURIComponent(this.renderedTemplate)}`, {
-        waitUntil: 'networkidle0'
-    });
-    await page.pdf(this.pdfOptions);
-    await browser.close();
+Generator.prototype.downloadPDF = async function () {
+    // function that prompts user to download a pdf
+    // must be ran in a browser
+    html2pdf().from(this.renderedTemplate).save()
+}
 
-    return this.pdfOptions.path
+Generator.prototype.downloadPDFjsPDF = async function () {
+    const doc = new jsPDF()
+    doc.fromHTML(this.renderedTemplate)
+    doc.save()
 }
 
 module.exports = Generator;
