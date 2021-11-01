@@ -73,6 +73,10 @@ generatorObject.downloadPDF() // generates and downloads PDF
 ## 📎 License
 This piece of code is open-source under MIT license.
 
+## 🛣 Roadmap
+- creating template variables standard
+- class abstraction over data json object
+
 ## 💻 Contributing
 If you feel that you have a great idea which could improve this piece of code, fork it, commit your changes and make a pull request, so we can take a look at it, thanks! 😎
 
